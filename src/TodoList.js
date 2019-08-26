@@ -10,7 +10,7 @@ class TodoList extends React.Component {
       }
 
     addOnClick() {
-        // this.simpleAction();
+        this.props.addTaskAction();
         console.log(this.props);
     
     }
@@ -26,14 +26,14 @@ class TodoList extends React.Component {
     }
 }
 
-// const mapStateToProps = (state, ownProps) => {
-//     return {
-//         prop: state.prop
-//     }
-// }
+const mapStateToProps = (state) => {
+    return {
+        listTasks: state
+    }
+}
 
 const mapDispatchToProps = dispatch => ({
-    simpleAction: () => dispatch(addTask('test'))
+    addTaskAction: () => dispatch(addTask('test'))
 })
 
-export default connect(null, mapDispatchToProps)(TodoList);
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

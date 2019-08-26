@@ -1,7 +1,7 @@
 import  { ADD_TASK } from './action-types';
 
-export function addTask(description) {
-    return { type: ADD_TASK, description }
+export function addTask( payload) {
+    return { type: ADD_TASK, payload};
 }
 
 // export function deleteTask(description) {
