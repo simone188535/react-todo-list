@@ -1,7 +1,12 @@
-import  { ADD_TASK } from './action-types';
+import { ADD_TASK } from './action-types';
 
-export function addTask( payload) {
-    return { type: ADD_TASK, payload};
+let nextTodoId = 0;
+export function addTask(payload) {
+    return {
+        type: ADD_TASK,
+        id: nextTodoId++,
+        payload
+    };
 }
 
 // export function deleteTask(description) {
