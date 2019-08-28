@@ -6,20 +6,21 @@ class TodoList extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {value: ''};
+        this.state = {todoValue: ''};
         
         this.onSubmit = this.onSubmit.bind(this);
         this.handleState = this.handleState.bind(this);
     }
-    handleState(event){
-        this.setState({value: event.target.value});
+    
+    handleState = (event) => {
+        this.setState({todoValue: event.target.value});
     }
-    onSubmit(event) {
+    onSubmit = (event) => {
         //check text value before submission
         event.preventDefault();
 
         
-        this.props.addTaskAction(this.state.value);
+        this.props.addTaskAction(this.state.todoValue);
         // this.props.test();
         // console.log(this.props);
         // console.log(this.state.value); 
@@ -29,7 +30,7 @@ class TodoList extends React.Component {
         return (
             <form onSubmit={this.onSubmit} className="w-100">
                 <div className="input-group my-3 w-50 mx-auto">
-                    <input type="text" className="form-control" value={this.state.value} onChange={this.handleState} placeholder="Description"></input>
+                    <input type="text" className="form-control" value={this.state.todoValue} onChange={this.handleState} placeholder="Description"></input>
                     <div className="input-group-append">
                         <button className="btn btn-primary" type="submit">Add Task</button>
                     </div>

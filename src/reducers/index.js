@@ -2,11 +2,10 @@ import { ADD_TASK } from '../actions/action-types';
 import { combineReducers } from 'redux';
 
 const initialState = {
-    // id:0,
     payload: []
 }
 
-export const firstNamedReducer = (state = initialState, action) => {
+export const todoListReducer = (state = initialState, action) => {
 
     if (action.type === ADD_TASK) {
         return Object.assign({}, state, {
@@ -22,7 +21,7 @@ export const firstNamedReducer = (state = initialState, action) => {
 }
 
 const rootReducer = combineReducers({
-    firstNamedReducer
+    todoList: todoListReducer
 });
 
 export default rootReducer;
