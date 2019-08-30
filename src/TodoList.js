@@ -6,20 +6,37 @@ class TodoList extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {todoValue: ''};
-        
+        this.state = { todoValue: '' };
+
         this.onSubmit = this.onSubmit.bind(this);
         this.handleState = this.handleState.bind(this);
     }
-    
+
     handleState = (event) => {
-        this.setState({todoValue: event.target.value});
+        this.setState({ todoValue: event.target.value });
+    }
+
+    errorHandling = () =>{
+
+        const todoListState = this.props.todoListState;
+        const todoListCount = todoListState.length;
+
+        let Warning = '';
+
+        if (todoListCount < 1) {
+            return Warning = <div className="alert alert-danger">Sorry, There are no Todo Items. Please add one.</div>;
+        }
+        return Warning;
+        
+        
     }
     onSubmit = (event) => {
         //check text value before submission
         event.preventDefault();
-
         
+
+        this.errorHandling();
+
         this.props.addTaskAction(this.state.todoValue);
         // this.props.test();
         // console.log(this.props);
@@ -28,27 +45,29 @@ class TodoList extends React.Component {
     }
     render() {
         return (
-            <form onSubmit={this.onSubmit} className="w-100">
-                <div className="input-group my-3 w-50 mx-auto">
-                    <input type="text" className="form-control" value={this.state.todoValue} onChange={this.handleState} placeholder="Description"></input>
-                    <div className="input-group-append">
-                        <button className="btn btn-primary" type="submit">Add Task</button>
+            <div className="w-100">
+                <form onSubmit={this.onSubmit}>
+                    <div className="input-group my-3 w-50 mx-auto">
+                        <input type="text" className="form-control" value={this.state.todoValue} onChange={this.handleState} placeholder="Description"></input>
+                        <div className="input-group-append">
+                            <button className="btn btn-primary" type="submit">Add Task</button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+                <div>{this.errorHandling()}</div>
+            </div>
         );
     }
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//         listTasks: state.value
-//     }
-// }
-
+const mapStateToProps = (state) => {
+    return {
+        todoListState: state.todoList.payload
+    }
+}
 const mapDispatchToProps = (dispatch) => ({
     addTaskAction: (text) => dispatch(addTask(text))
-    
+
 })
 
-export default connect(null, mapDispatchToProps)(TodoList);
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

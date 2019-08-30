@@ -1,33 +1,44 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import Edit from './Edit';
+import Delete from './Delete';
+
 class DisplayList extends React.Component {
+
 
     manageList = () => {
 
-        // if no results display text
-        // const { id, description } = this.props.todoListState;
-        // console.log(this.props.todoListState);
+        const todoListState = this.props.todoListState;
+        // const todoListCount = todoListState.length;
+        let ListResult = '';
 
-        return (this.props.todoListState.map(x =>
-            [x].map(item => <li key={item.id}>{item.description}</li>)
-        ));
-        // console.log(this.props);
 
-        // const listItems= this.props.todoListState.map(x =>{
-        //     [x].map((item) => {
-        //         // allDescriptions= item.description;
-        //         allDescriptions=  <li key={item.id}>{item.description}</li>
+        // if (todoListCount < 1) {
+        //     return ListResult = <div>Sorry, There are no List Items</div>;
+        // }
+        ListResult = todoListState.map(x =>
+            [x].map(item =>
+                <li key={item.id} className="list-group-item">
+                    <div>{item.description}</div>
 
-        //     });
-        // });
+                    <div className="float-right">
+                        <Edit listId={item.id} />
+                        <Delete listId={item.id}/>
+                    </div>
+                </li>)
+        );
+
+        return (ListResult);
+
     }
     render() {
 
         return (
-            <div>
-                <div>test</div>
-                <div><ul>{this.manageList()}</ul></div>
+            <div className="w-100">
+                <ul className="list-group">
+                    {this.manageList()}
+                </ul>
             </div>
         );
     }

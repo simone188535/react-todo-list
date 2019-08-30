@@ -1,4 +1,4 @@
-import { ADD_TASK } from './action-types';
+import { ADD_TASK, DELETE_TASK } from './action-types';
 
 let nextTodoId = 0;
 export function addTask(payload) {
@@ -9,6 +9,9 @@ export function addTask(payload) {
     };
 }
 
-// export function deleteTask(description) {
-//     return { type: DELETE_TASK, description }
-// }
+export function deleteTask(removePayload){
+    return{
+        type: DELETE_TASK ,
+        removePayload
+   }
+}

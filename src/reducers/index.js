@@ -1,4 +1,4 @@
-import { ADD_TASK } from '../actions/action-types';
+import { ADD_TASK, DELETE_TASK } from '../actions/action-types';
 import { combineReducers } from 'redux';
 
 const initialState = {
@@ -14,6 +14,17 @@ export const todoListReducer = (state = initialState, action) => {
                 description: action.payload
             })
         });
+
+    }
+    if (action.type === DELETE_TASK) {
+       
+        // removePayload = action.removePayload;
+        let val = state.payload.filter(item => {
+            return item.id!==action.removePayload;
+        });
+        return {...state,  payload: val}
+        
+        
 
     }
 
