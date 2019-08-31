@@ -62,11 +62,11 @@ class TodoList extends React.Component {
     }
     checkTextWarning = () => {
         
-        let checkWarning = "";
+        let checkTextWarning = "";
         if(!this.state.isText){
-            return checkWarning = <div className="alert alert-danger">No text was submitted.</div>;
+            return checkTextWarning = <div className="alert alert-danger">No text was submitted.</div>;
         }
-        return checkWarning;
+        return checkTextWarning;
     }
 
     DefaultNoList = () => {
@@ -74,13 +74,13 @@ class TodoList extends React.Component {
         const todoListState = this.props.todoListState;
         const todoListCount = todoListState.length;
 
-        let Warning = '';
+        let noListWarning = '';
 
         //checks if there are list items
         if (todoListCount < 1) {
-            return Warning = <div className="alert alert-danger">Sorry, There are no Todo Items. Please add one.</div>;
+            return noListWarning = <div className="alert alert-danger">Sorry, There are no Todo Items. Please add one.</div>;
         }
-        return Warning;
+        return noListWarning;
 
 
     }
