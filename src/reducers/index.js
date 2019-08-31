@@ -17,15 +17,11 @@ export const todoListReducer = (state = initialState, action) => {
 
     }
     if (action.type === DELETE_TASK) {
-       
-        // removePayload = action.removePayload;
+
         let val = state.payload.filter(item => {
             return item.id!==action.removePayload;
         });
         return {...state,  payload: val}
-        
-        
-
     }
 
     return state;
