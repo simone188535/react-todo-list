@@ -4,9 +4,16 @@ import ReactDOM from "react-dom";
 import Modal from 'react-bootstrap-modal';
 
 const ModalPopup = props => {
+
+    // console.log(props);
+    if(props.filtered){
+        console.log('full');
+    }else{
+        console.log('empty');
+    }
     return ReactDOM.createPortal(
         <div>
-
+        {/* {console.log(this.props)} */}
         <Modal.Title>Modal title</Modal.Title>
         
         </div>, document.querySelector("#modal"));
