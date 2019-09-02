@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Edit from './Edit';
 import Delete from './Delete';
 
+
 class DisplayList extends React.Component {
 
 
@@ -13,10 +14,6 @@ class DisplayList extends React.Component {
         // const todoListCount = todoListState.length;
         let ListResult = '';
 
-
-        // if (todoListCount < 1) {
-        //     return ListResult = <div>Sorry, There are no List Items</div>;
-        // }
         ListResult = todoListState.map(x =>
             [x].map(item =>
                 <li key={item.id} className="list-group-item">

@@ -86,11 +86,12 @@ class TodoList extends React.Component {
     }
 
     onSubmit = (event) => {
-        //check text value before submission
         event.preventDefault();
+        
         if(!this.state.isSubmitted){
             this.setState({isSubmitted: true});
         }
+        
         this.checkTextOnSubmit();
         // console.log(this.state.isText);
 

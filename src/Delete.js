@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 import { deleteTask } from './actions';
 
 class Delete extends React.Component{
-
-    // constructor(props) {
-    //     super(props);
-    //   }
     
     filterAndRemove = (propToBeFiltered) => {
 
