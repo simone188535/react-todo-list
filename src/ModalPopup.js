@@ -5,7 +5,8 @@ import { Modal, Button } from 'react-bootstrap';
 
 const ModalPopup = props => {
 
-    // console.log(props);
+
+    console.log(props);
     // if(props.filtered){
     //     console.log('full');
     // }else{
@@ -14,7 +15,7 @@ const ModalPopup = props => {
     return ReactDOM.createPortal(
         <div>
             {/* {console.log(this.props)} */}
-            {/* <Modal> */}
+            <Modal show={props.showModal}>
             <Modal.Header closeButton>
                 <Modal.Title>Modal title</Modal.Title>
             </Modal.Header>
@@ -27,7 +28,7 @@ const ModalPopup = props => {
                 <Button variant="secondary">Close</Button>
                 <Button variant="primary">Save changes</Button>
             </Modal.Footer>
-            {/* </Modal> */}
+            </Modal>
 
         </div>, document.querySelector("#modal"));
 }
