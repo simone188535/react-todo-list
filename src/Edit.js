@@ -18,13 +18,22 @@ class Edit extends React.Component {
 
     passedPropsToModal = (propsPassed) => {
         this.setState({ modalData: propsPassed });
-        this.setState({ showModal:  true});
+        // this.setState({ modalData: propsPassed, showModal:  true });
+        // this.setState({ showModal:  true});
+    }
+    handleClose = () =>{
+        this.setState({ showModal:  false });
+    }
+
+    handleShow = () =>{
+        this.setState({ showModal:  true });
     }
 
     selectThisItem = () => {
         // console.log(this.props);
         this.props.editTaskAction(this.props.listId);
         this.passedPropsToModal(this.props.filtered);
+        this.handleShow();
 
 
 
@@ -37,7 +46,6 @@ class Edit extends React.Component {
             <button className="btn bg-primary text-white mx-1" onClick={() => this.selectThisItem()}>
                 <div>Edit</div>
                 <ModalPopup test="test" filtered={this.state.modalData} showModal={this.state.showModal}/>
-                {/* //pass prop to child only on onclick */}
             </button>
         );
     }
