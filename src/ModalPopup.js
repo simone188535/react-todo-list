@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Modal, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { modalToggleTask } from './actions';
 // import Modal from 'react-bootstrap-modal';
 
 // const ModalPopup = props => {
@@ -21,19 +23,25 @@ class ModalPopup extends React.Component {
     //     console.log('empty');
     // }
 
-    // handleClose = () => {
-    //     console.log('modal props', this.props);
-    //     this.setState({ showModal: false });
-    //     return this.state.showModal;
+    handleClose = () => {
+        // console.log('modal props', this.props);
+        // this.setState({ showModal: false });
+        // return this.state.showModal;
+        return this.props.modalToggleTaskAction('notActive');
+        // console.log('global state',this.props.modalToggleState);
+    }
+    // modalToggle = () =>{
+    //     console.log(this.props.modalToggleState);
     // }
 
     render() {
         return ReactDOM.createPortal(
-            <div>
+            <div onClick={e => e.stopPropagation()}>
                 {/* {console.log(this.props)} */}
                 {/* <Modal show={this.props.showModal} */}
-                <Modal show={this.props.showModal}
-                    // onHide={
+                {/* {this.props.modalToggleState} */}
+                <Modal show={this.props.modalToggleState}
+                    onHide={this.handleClose}
                     //     this.props.showModal
                         //()=>{this.handleClose()
                     //     console.log('modal props:', this.props.showModal);
@@ -81,5 +89,15 @@ class ModalPopup extends React.Component {
 //     return ReactDOM.createPortal(ModalData, document.querySelector("#modal"));
 
 // }
+const mapStateToProps = (state) => {
+    return {
+        modalToggleState: state.todoList.modalToggle
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        modalToggleTaskAction: (modalTrigger) => dispatch(modalToggleTask(modalTrigger))
+    }
+}
 
-export default ModalPopup;
+export default connect(mapStateToProps, mapDispatchToProps)(ModalPopup);

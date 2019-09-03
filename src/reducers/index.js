@@ -1,4 +1,4 @@
-import { ADD_TASK, DELETE_TASK, EDIT_TASK } from '../actions/action-types';
+import { ADD_TASK, DELETE_TASK, EDIT_TASK, MODAL_TOGGLE } from '../actions/action-types';
 import { combineReducers } from 'redux';
 
 const initialState = {
@@ -35,8 +35,23 @@ export const todoListReducer = (state = initialState, action) => {
         });
 
         let indexedSelectedVal = selectedVal[0];
-        return {...state, filtering: indexedSelectedVal};
+        return { ...state, filtering: indexedSelectedVal };
 
+    }
+    if (action.type === MODAL_TOGGLE) {
+
+        // console.log(!state.modalToggle);
+        let isActive = '';
+        if(action.modalTrigger === 'active'){
+            isActive = true;
+            console.log(isActive);
+        }
+        if(action.modalTrigger === 'notActive'){
+            isActive = false;
+            console.log(isActive);
+        }
+        return {...state, modalToggle: isActive};
+        
     }
 
     return state;

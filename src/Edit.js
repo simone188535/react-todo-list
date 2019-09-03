@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { editTask } from './actions';
+import { editTask, modalToggleTask } from './actions';
 
 import ModalPopup from './ModalPopup';
 
@@ -12,8 +12,9 @@ class Edit extends React.Component {
         this.state = {
             modalData: null,
             showModal:false
-
         }
+
+        // this.selectThisItem = this.selectThisItem.bind(this);
     }
 
     passedPropsToModal = (propsPassed) => {
@@ -21,22 +22,22 @@ class Edit extends React.Component {
         // this.setState({ modalData: propsPassed, showModal:  true });
         // this.setState({ showModal:  true});
     }
-    handleClose = () =>{
-        this.setState({ showModal:  false });
-    }
+    // handleClose = () =>{
+    //     this.setState({ showModal:  false });
+    // }
 
-    handleShow = () =>{
-        this.setState({ showModal:  true });
-    }
+    // handleShow = () =>{
+    //     this.setState({ showModal:  true });
+    // }
 
-    selectThisItem = () => {
+    selectThisItem = (event) => {
         // console.log(this.props);
         this.props.editTaskAction(this.props.listId);
         this.passedPropsToModal(this.props.filtered);
-        this.handleShow();
-
-
-
+        // this.handleShow();
+        this.props.modalToggleTaskAction('active');
+        
+        // console.log(this.props.modalToggleTaskAction());
         // console.log(this.props.filtered);
     }
 
@@ -45,7 +46,7 @@ class Edit extends React.Component {
             // <button className="btn bg-primary text-white mx-1" onClick={()=>{this.props.editTaskAction(this.props.listId)}}>
             <button className="btn bg-primary text-white mx-1" onClick={() => this.selectThisItem()}>
                 <div>Edit</div>
-                <ModalPopup test="test" filtered={this.state.modalData} showModal={this.state.showModal}/>
+                <ModalPopup filtered={this.state.modalData} />
             </button>
         );
     }
@@ -60,7 +61,8 @@ const mapStateToProps = (state) => {
 //rewrite this in modal portal, but leave dispatch
 const mapDispatchToProps = (dispatch) => {
     return {
-        editTaskAction: (listId) => dispatch(editTask(listId))
+        editTaskAction: (listId) => dispatch(editTask(listId)),
+        modalToggleTaskAction: (modalTrigger) => dispatch(modalToggleTask(modalTrigger))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Edit);
