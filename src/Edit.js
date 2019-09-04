@@ -35,7 +35,7 @@ class Edit extends React.Component {
         this.props.editTaskAction(this.props.listId);
         this.passedPropsToModal(this.props.filtered);
         // this.handleShow();
-        this.props.modalToggleTaskAction('active');
+        this.props.modalToggleTaskAction(true);
         
         // console.log(this.props.modalToggleTaskAction());
         // console.log(this.props.filtered);

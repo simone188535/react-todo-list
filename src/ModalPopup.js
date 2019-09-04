@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { modalToggleTask } from './actions';
 // import Modal from 'react-bootstrap-modal';
 
-// const ModalPopup = props => {
-class ModalPopup extends React.Component {
+const ModalPopup = props => {
+// class ModalPopup extends React.Component {
 
     // constructor(props) {
     //     super(props);
@@ -23,25 +23,25 @@ class ModalPopup extends React.Component {
     //     console.log('empty');
     // }
 
-    handleClose = () => {
+    const handleClose = () => {
         // console.log('modal props', this.props);
         // this.setState({ showModal: false });
         // return this.state.showModal;
-        return this.props.modalToggleTaskAction('notActive');
+        return props.modalToggleTaskAction(false);
         // console.log('global state',this.props.modalToggleState);
     }
     // modalToggle = () =>{
     //     console.log(this.props.modalToggleState);
     // }
 
-    render() {
+   
         return ReactDOM.createPortal(
             <div onClick={e => e.stopPropagation()}>
                 {/* {console.log(this.props)} */}
                 {/* <Modal show={this.props.showModal} */}
                 {/* {this.props.modalToggleState} */}
-                <Modal show={this.props.modalToggleState}
-                    onHide={this.handleClose}
+                <Modal show={props.modalToggleState}
+                    onHide={handleClose}
                     //     this.props.showModal
                         //()=>{this.handleClose()
                     //     console.log('modal props:', this.props.showModal);
@@ -65,7 +65,7 @@ class ModalPopup extends React.Component {
 
             </div>, document.querySelector("#modal"));
     }
-}
+
 
 
 // class Modal extends React.Component {

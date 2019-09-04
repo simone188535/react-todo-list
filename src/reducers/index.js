@@ -2,8 +2,9 @@ import { ADD_TASK, DELETE_TASK, EDIT_TASK, MODAL_TOGGLE } from '../actions/actio
 import { combineReducers } from 'redux';
 
 const initialState = {
-    filtering: [],
     payload: [],
+    filtering: [],
+    id:null,
     modalToggle: false
 }
 
@@ -42,13 +43,13 @@ export const todoListReducer = (state = initialState, action) => {
 
         // console.log(!state.modalToggle);
         let isActive = '';
-        if(action.modalTrigger === 'active'){
+        if(action.modalTrigger === true){
             isActive = true;
-            console.log(isActive);
+            // console.log(isActive);
         }
-        if(action.modalTrigger === 'notActive'){
+        if(action.modalTrigger === false){
             isActive = false;
-            console.log(isActive);
+            // console.log(isActive);
         }
         return {...state, modalToggle: isActive};
         
