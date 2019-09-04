@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Edit from './Edit';
+// import Edit from './Edit';
 import Delete from './Delete';
 
 
@@ -20,7 +20,7 @@ class DisplayList extends React.Component {
                     <div>{item.description}</div>
 
                     <div className="float-right">
-                        <Edit listId={item.id} />
+                        {/* <Edit listId={item.id} /> */}
                         <Delete listId={item.id}/>
                     </div>
                 </li>)
