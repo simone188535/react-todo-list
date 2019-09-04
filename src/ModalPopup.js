@@ -5,66 +5,61 @@ import { connect } from 'react-redux';
 import { modalToggleTask } from './actions';
 // import Modal from 'react-bootstrap-modal';
 
-const ModalPopup = props => {
-// class ModalPopup extends React.Component {
+// const ModalPopup = props => {
+class ModalPopup extends React.Component {
 
-    // constructor(props) {
-    //     super(props);
-
-    //     this.state = {
-    //         showModal: this.props.showModal
-    //     }
-    // }
-
-    // console.log(props);
-    // if(props.filtered){
-    //     console.log('full');
-    // }else{
-    //     console.log('empty');
-    // }
-
-    const handleClose = () => {
+    handleClose = () => {
         // console.log('modal props', this.props);
         // this.setState({ showModal: false });
         // return this.state.showModal;
-        return props.modalToggleTaskAction(false);
+        // console.log('modal props', this.props);
+        return this.props.modalToggleTaskAction(false);
         // console.log('global state',this.props.modalToggleState);
+       
     }
     // modalToggle = () =>{
     //     console.log(this.props.modalToggleState);
     // }
+    handleDefaultValue = () => {
+        
+        // console.log(this.props.filtered);
+        let defaultValue = ''
+        if(this.props.filtered){
+            return defaultValue = this.props.filtered[0].description;
+        }
+        return defaultValue;
+    }
 
-   
+        render() {
         return ReactDOM.createPortal(
             <div onClick={e => e.stopPropagation()}>
-                {/* {console.log(this.props)} */}
+                {/* {console.log('s',this.props.filtered)} */}
                 {/* <Modal show={this.props.showModal} */}
                 {/* {this.props.modalToggleState} */}
-                <Modal show={props.modalToggleState}
-                    onHide={handleClose}
-                    //     this.props.showModal
-                        //()=>{this.handleClose()
-                    //     console.log('modal props:', this.props.showModal);
-                    //     console.log('modal state:', this.state.showModal);
-                    //}
-                    // }
-                >
+                <Modal show={this.props.modalToggleState}
+                    onHide={this.handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Modal title</Modal.Title>
+                        <Modal.Title>Change the task</Modal.Title>
                     </Modal.Header>
-
+                    {/* {this.handleDefaultValue()} */}
                     <Modal.Body>
-                        <p>Modal body text goes here.</p>
+                    <input type="text" 
+                    defaultValue={this.handleDefaultValue()} 
+                    // value={this.state.value} 
+                    // onChange={this.handleChange} 
+
+                    />
                     </Modal.Body>
 
                     <Modal.Footer>
-                        <Button variant="secondary">Close</Button>
+                        <Button variant="secondary" onClick={this.handleClose}>Close</Button>
                         <Button variant="primary">Save changes</Button>
                     </Modal.Footer>
                 </Modal>
 
             </div>, document.querySelector("#modal"));
     }
+}
 
 
 

@@ -4,7 +4,6 @@ import { combineReducers } from 'redux';
 const initialState = {
     payload: [],
     filtering: [],
-    id:null,
     modalToggle: false
 }
 
@@ -30,13 +29,17 @@ export const todoListReducer = (state = initialState, action) => {
 
     if (action.type === EDIT_TASK) {
 
-        let selectedVal = state.payload.filter((item) => {
-            return item.id === action.editPayload;
+        // let selectedVal = state.payload.filter((item) => {
+        //     return item.id === action.editPayload;
 
-        });
+        // });
 
-        let indexedSelectedVal = selectedVal[0];
-        return { ...state, filtering: indexedSelectedVal };
+        // let indexedSelectedVal = selectedVal[0];
+        // console.log('indexedVal', indexedSelectedVal);
+        // return { ...state, filtering: indexedSelectedVal };
+        // return Object.assign({}, state, {
+        //     filtering: action.editPayload
+        // });
 
     }
     if (action.type === MODAL_TOGGLE) {

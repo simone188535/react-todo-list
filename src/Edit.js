@@ -16,11 +16,11 @@ class Edit extends React.Component {
 
         // this.selectThisItem = this.selectThisItem.bind(this);
     }
-
+    
     passedPropsToModal = (propsPassed) => {
+
         this.setState({ modalData: propsPassed });
-        // this.setState({ modalData: propsPassed, showModal:  true });
-        // this.setState({ showModal:  true});
+
     }
     // handleClose = () =>{
     //     this.setState({ showModal:  false });
@@ -33,12 +33,15 @@ class Edit extends React.Component {
     selectThisItem = (event) => {
         // console.log(this.props);
         this.props.editTaskAction(this.props.listId);
+
         this.passedPropsToModal(this.props.filtered);
+
+
         // this.handleShow();
         this.props.modalToggleTaskAction(true);
         
         // console.log(this.props.modalToggleTaskAction());
-        // console.log(this.props.filtered);
+        // console.log('filtered ',this.props.filtered[0].description);
     }
 
     render() {
@@ -52,10 +55,13 @@ class Edit extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state,ownProps) => {
     return {
-        // filtered: state.todoList.payload
-        filtered: state.todoList.filtering
+        filtered: state.todoList.payload.filter((item) => {
+                return item.id === ownProps.listId;
+    
+            })
+        // filtered: state.todoList.filtering
     }
 }
 //rewrite this in modal portal, but leave dispatch
@@ -67,5 +73,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Edit);
 
-// put modal Here. Use react-Bootstrap to create it using a portal. 
-// onclick change state of toggle for modal and pass it down to the modal component
+// Next Steps: pull filter out of reducer and put it into mapStateToProps
+// after getting data into the modal. update the next in the reducer using the map function
